@@ -7,7 +7,7 @@ import maidadough from "../assets/maida-dough.mp4";
 import fry from "../assets/fry.mp4";
 import sweet from "../assets/sweet.mp4";
 import masalas from "../assets/masalas.mp4";
-import { FaUtensils, FaMapMarkerAlt, FaPhoneAlt, FaClock } from "react-icons/fa";
+import { FaUtensils, FaMapMarkerAlt, FaPhoneAlt, FaClock, FaCoffee, FaLeaf } from "react-icons/fa";
 import DummyMap from "../components/DummyMap";
 
 export default function Welcome() {
@@ -16,6 +16,29 @@ export default function Welcome() {
   const [isVisible, setIsVisible] = useState(false);
   const [isHovering, setIsHovering] = useState(false);
   const scrollRef = useRef(null);
+
+  const breakfastItems = [
+    "Idli",
+    "Vada",
+    "Ven Pongal",
+    "Kichadi/Upma",
+    "Dosa / Uthappam",
+    "Kesari",
+    "Tea / Filter Coffee (coffee dine-in only)"
+  ];
+
+  const lunchItems = [
+    "Sambar Rice",
+    "Curd Rice",
+    "Poriyal",
+    "Kootu",
+    "Papad",
+    "Sweet",
+    "Veg Biryani or Pulav"
+  ];
+const WHATSAPP_NUMBER = "917010856620"; // <-- replace xxx with your number including country code, e.g., 917845637314
+
+
 
   // Scroll animation observer
   useEffect(() => {
@@ -83,11 +106,17 @@ export default function Welcome() {
           0% { background-position: 0% center; }
           100% { background-position: 200% center; }
         }
+        @keyframes float {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-10px); }
+        }
+        .float-animation {
+          animation: float 3s ease-in-out infinite;
+        }
         .scrollbar-hide::-webkit-scrollbar { display: none; }
         .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
       `}</style>
 
-      {/* ---------- Banner Section ---------- */}
       <section className="relative w-full h-[78vh] flex flex-col justify-center items-center text-center overflow-hidden mb-16">
         <img
           src={bannerImage}
@@ -112,24 +141,18 @@ export default function Welcome() {
         </div>
       </section>
 
-      {/* ---------- Welcome Section ---------- */}
-     <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-4xl text-center mb-10 leading-relaxed sm:leading-snug font-serif italic text-lime-700 flex items-center justify-center gap-3 font-normal">
-  Welcome to Our Kitchen <FaUtensils className="text-lime-700" />
-</h2>
+      <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-4xl text-center mb-10 leading-relaxed sm:leading-snug font-serif italic text-lime-700 flex items-center justify-center gap-3 font-normal">
+        Welcome to Our Kitchen <FaUtensils className="text-lime-700" />
+      </h2>
 
-
-      <section className="relative  px-6 md:px-20 text-center overflow-hidden">
+      <section className="relative px-6 md:px-20 text-center overflow-hidden">
         <div className="animate-on-scroll visible">
           <p className="max-w-3xl mx-auto text-xl md:text-2xl text-black leading-relaxed font-medium mb-10">
             "At Sri Krishna Bhavan, every dish tells a story! From sizzling street-food favorites to hearty traditional meals, we bring flavors to life."
           </p>
 
           <div className="flex flex-wrap justify-center gap-8 mt-6">
-            {[
-              // { num: "500+", label: "Happy Customers", color: "text-yellow-400" },
-              // { num: "50+", label: "Delicious Dishes", color: "text-fuchsia-400" },
-              // { num: "5+", label: "Years Experience", color: "text-purple-400" },
-            ].map((item, i) => (
+            {[].map((item, i) => (
               <div key={i} className="text-center group cursor-pointer">
                 <div
                   className={`text-4xl font-bold ${item.color} group-hover:text-lime-400 transition-colors duration-300`}
@@ -143,16 +166,178 @@ export default function Welcome() {
         </div>
       </section>
 
-      {/* ---------- Video Gallery ---------- */}
-     <section className="py-16 px-6 md:px-20 relative">
+      <section className="py-16 px-6 md:px-20 bg-gradient-to-b from-white to-lime-50">
+        <div className="text-center mb-12 animate-on-scroll">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-4xl mb-4 font-serif italic text-lime-700 flex items-center justify-center gap-3 font-normal">
+            What You Get <FaUtensils className="text-lime-700" />
+          </h2>
+          <p className="text-base sm:text-lg text-gray-700 max-w-2xl mx-auto">
+            Fresh, delicious meals prepared daily with authentic flavors
+          </p>
+        </div>
+
+        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-8 mb-10">
+          <div className="group relative bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border-2 border-lime-100 hover:border-lime-300">
+            <div className="absolute top-0 right-0 w-32 h-32 bg-lime-600 rounded-bl-full opacity-10 group-hover:opacity-20 transition-opacity" />
+            <div className="p-6 relative z-10">
+              <div className="flex items-center justify-center mb-4">
+                <div className="bg-gradient-to-br from-lime-500 to-lime-700 p-3 rounded-full float-animation">
+                  <FaCoffee className="text-3xl text-white" />
+                </div>
+              </div>
+              <h3 className="text-xl md:text-2xl font-bold text-lime-700 text-center mb-4">
+                Breakfast
+              </h3>
+              <ul className="grid grid-cols-2 gap-x-4 gap-y-2">
+                {breakfastItems.map((item, idx) => (
+                  <li
+                    key={idx}
+                    className="flex items-start gap-2 text-gray-700 text-sm md:text-base group-hover:translate-x-1 transition-transform duration-300"
+                  >
+                    <span className="text-lime-600 mt-0.5 flex-shrink-0 text-xs">✦</span>
+                    <span className="font-medium">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="absolute bottom-0 left-0 right-0 h-2 bg-gradient-to-r from-lime-500 via-lime-600 to-lime-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
+          </div>
+
+          <div className="group relative bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border-2 border-lime-100 hover:border-lime-300">
+            <div className="absolute top-0 left-0 w-32 h-32 bg-lime-600 rounded-br-full opacity-10 group-hover:opacity-20 transition-opacity" />
+            <div className="p-6 relative z-10">
+              <div className="flex items-center justify-center mb-4">
+                <div className="bg-gradient-to-br from-lime-500 to-lime-700 p-3 rounded-full float-animation" style={{ animationDelay: '0.5s' }}>
+                  <FaLeaf className="text-3xl text-white" />
+                </div>
+              </div>
+              <h3 className="text-xl md:text-2xl font-bold text-lime-700 text-center mb-4">
+                Lunch
+              </h3>
+              <ul className="grid grid-cols-2 gap-x-4 gap-y-2">
+                {lunchItems.map((item, idx) => (
+                  <li
+                    key={idx}
+                    className="flex items-start gap-2 text-gray-700 text-sm md:text-base group-hover:translate-x-1 transition-transform duration-300"
+                  >
+                    <span className="text-lime-600 mt-0.5 flex-shrink-0 text-xs">✦</span>
+                    <span className="font-medium">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="absolute bottom-0 left-0 right-0 h-2 bg-gradient-to-r from-lime-500 via-lime-600 to-lime-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
+          </div>
+        </div>
+
+        <div className="max-w-4xl mx-auto bg-gradient-to-r from-lime-600 to-lime-700 rounded-xl shadow-lg p-6 md:p-8 text-white">
+          <div className="flex flex-wrap items-center justify-center gap-4 md:gap-8 text-sm md:text-base">
+            <div className="flex items-center gap-2">
+              <FaClock className="text-yellow-300 text-xl" />
+              <span className="font-semibold">Delivery: 15–30 minutes</span>
+            </div>
+            <span className="hidden md:inline text-yellow-300">•</span>
+            <div className="flex items-center gap-2">
+              <FaCoffee className="text-yellow-300 text-xl" />
+              <span className="font-semibold">Breakfast: 6:30–10:30 AM</span>
+            </div>
+            <span className="hidden md:inline text-yellow-300">•</span>
+            <div className="flex items-center gap-2">
+              <FaLeaf className="text-yellow-300 text-xl" />
+              <span className="font-semibold">Lunch: 11:30 AM–2:30 PM</span>
+            </div>
+            <span className="hidden md:inline text-yellow-300">•</span>
+            <div className="flex items-center gap-2">
+              <FaClock className="text-yellow-300 text-xl" />
+              <span className="font-semibold">Mon–Sat</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+{/* plans and pricing */}
+
+<section className="py-16 px-6 md:px-20 bg-white">
   <div className="text-center mb-12 animate-on-scroll">
     <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-4xl mb-4 font-serif italic text-lime-700 flex items-center justify-center gap-3 font-normal">
-      Watch Our Cooking Videos <FaUtensils className="text-yellow-500" />
+      Plans & Pricing <FaUtensils className="text-lime-700" />
     </h2>
-    <p className="text-base sm:text-lg text-gray-800 max-w-2xl mx-auto">
-      Learn the secrets behind our delicious recipes with our step-by-step cooking tutorials
+    <p className="text-base sm:text-lg text-gray-700 max-w-2xl mx-auto">
+      Choose a meal plan that fits your lifestyle and enjoy homely, delicious food every day!
     </p>
   </div>
+
+  <div className="flex flex-wrap justify-center gap-8 items-stretch">
+    {/* Plan 1 */}
+    <div className="flex flex-col justify-between bg-white border-2 border-lime-200 hover:border-lime-400 rounded-2xl shadow-md hover:shadow-xl transition-all duration-500 w-80 h-[230px] p-6 text-center">
+      <div>
+        <h3 className="text-2xl font-bold text-lime-700 mb-2">Weekly Saver (7 Days)</h3>
+        <p className="text-gray-700 mb-1">
+          <span className="font-semibold text-lime-600">Offer:</span> ₹910 <span className="text-gray-500">(₹130/day)</span>
+        </p>
+        <p className="text-gray-600 line-through">Regular: ₹1120</p>
+      </div>
+      <a
+        href={`https://wa.me/${WHATSAPP_NUMBER}?text=Hi! I'm interested in the Weekly Saver (7 Days).`}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="mt-4 bg-lime-600 hover:bg-lime-700 text-white font-semibold py-2 px-4 rounded-full flex items-center justify-center gap-2 shadow-lg hover:scale-105 transition-transform duration-300"
+      >
+        <FaPhoneAlt className="text-white" /> Subscribe via WhatsApp
+      </a>
+    </div>
+
+    {/* Plan 2 */}
+    <div className="flex flex-col justify-between bg-white border-2 border-lime-200 hover:border-lime-400 rounded-2xl shadow-md hover:shadow-xl transition-all duration-500 w-80 h-[230px] p-6 text-center">
+      <div>
+        <h3 className="text-2xl font-bold text-lime-700 mb-2">10-Day Value Pack</h3>
+        <p className="text-gray-700 mb-1">
+          <span className="font-semibold text-lime-600">Offer:</span> ₹1300 <span className="text-gray-500">(₹130/day)</span>
+        </p>
+        <p className="text-gray-600 line-through">Regular: ₹1600</p>
+      </div>
+      <a
+        href={`https://wa.me/${WHATSAPP_NUMBER}?text=Hi! I'm interested in the 10-Day Value Pack.`}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="mt-4 bg-lime-600 hover:bg-lime-700 text-white font-semibold py-2 px-4 rounded-full flex items-center justify-center gap-2 shadow-lg hover:scale-105 transition-transform duration-300"
+      >
+        <FaPhoneAlt className="text-white" /> Subscribe via WhatsApp
+      </a>
+    </div>
+
+    {/* Plan 3 */}
+    <div className="flex flex-col justify-between bg-white border-2 border-lime-200 hover:border-lime-400 rounded-2xl shadow-md hover:shadow-xl transition-all duration-500 w-80 h-[230px] p-6 text-center">
+      <div>
+        <h3 className="text-2xl font-bold text-lime-700 mb-2">Monthly Family Pack (30 Days)</h3>
+        <p className="text-gray-700 mb-1">
+          <span className="font-semibold text-lime-600">Offer:</span> ₹3900 <span className="text-gray-500">(₹130/day)</span>
+        </p>
+        <p className="text-gray-600 line-through">Regular: ₹4800</p>
+      </div>
+      <a
+        href={`https://wa.me/${WHATSAPP_NUMBER}?text=Hi! I'm interested in the Monthly Family Pack (30 Days).`}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="mt-4 bg-lime-600 hover:bg-lime-700 text-white font-semibold py-2 px-4 rounded-full flex items-center justify-center gap-2 shadow-lg hover:scale-105 transition-transform duration-300"
+      >
+        <FaPhoneAlt className="text-white" /> Subscribe via WhatsApp
+      </a>
+    </div>
+  </div>
+</section>
+
+{/* video section */}
+
+      <section className="py-16 px-6 md:px-20 relative">
+        <div className="text-center mb-12 animate-on-scroll">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-4xl mb-4 font-serif italic text-lime-700 flex items-center justify-center gap-3 font-normal">
+            Watch Our Cooking Videos <FaUtensils className="text-yellow-500" />
+          </h2>
+          <p className="text-base sm:text-lg text-gray-800 max-w-2xl mx-auto">
+            Learn the secrets behind our delicious recipes with our step-by-step cooking tutorials
+          </p>
+        </div>
 
         <div
           ref={scrollRef}
@@ -185,7 +370,6 @@ export default function Welcome() {
           ))}
         </div>
       </section>
-
-      </div>
+    </div>
   );
 }

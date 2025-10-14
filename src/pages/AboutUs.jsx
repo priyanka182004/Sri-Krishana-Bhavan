@@ -71,13 +71,13 @@ const AboutUs = () => {
                 </div>
                 <div className="text-center mt-12">
                     <h2 className="text-2xl font-serif mb-4 text-gray-800">Taste the magic today!</h2>
-                    <p className="mb-6 text-gray-800">Join us for an unforgettable dining experience that delights the senses.</p>
+                    {/* <p className="mb-6 text-gray-800">Join us for an unforgettable dining experience that delights the senses.</p>
                     <a
                         href="/menu"
                         className="inline-block bg-lime-800 hover:bg-lime-600 text-white font-semibold px-6 py-3 rounded-full shadow-lg transition duration-300"
                     >
                         View Our Menu
-                    </a>
+                    </a> */}
                 </div>
 
             </div>
